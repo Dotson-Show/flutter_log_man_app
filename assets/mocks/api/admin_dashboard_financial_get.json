@@ -1,0 +1,35 @@
+{
+  "statusCode": 200,
+  "total_revenue": 125000.5,
+  "processed_payments": 120000.5,
+  "pending_payments": 5000.0,
+  "total_commissions": 12500.5,
+  "daily_revenue": [
+    {
+      "date": "2023-12-01",
+      "revenue": 1250.5
+    },
+    {
+      "date": "2023-12-02",
+      "revenue": 2100.0
+    },
+    {
+      "date": "2023-12-03",
+      "revenue": 1800.75
+    }
+  ],
+  "top_earning_routes": [
+    {
+      "route": "Lagos to Abuja",
+      "revenue": 5000.0
+    },
+    {
+      "route": "Lagos to Port Harcourt",
+      "revenue": 3500.0
+    },
+    {
+      "route": "Abuja to Kano",
+      "revenue": 2800.0
+    }
+  ]
+}

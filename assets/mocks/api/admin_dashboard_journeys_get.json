@@ -1,0 +1,35 @@
+{
+  "statusCode": 200,
+  "total_journeys": 5000,
+  "completed_journeys": 4500,
+  "cancelled_journeys": 500,
+  "average_journey_time": 25.5,
+  "daily_stats": [
+    {
+      "date": "2023-12-01",
+      "journeys": 45
+    },
+    {
+      "date": "2023-12-02",
+      "journeys": 52
+    },
+    {
+      "date": "2023-12-03",
+      "journeys": 38
+    }
+  ],
+  "popular_routes": [
+    {
+      "route": "Lagos to Abuja",
+      "count": 150
+    },
+    {
+      "route": "Lagos to Port Harcourt",
+      "count": 120
+    },
+    {
+      "route": "Abuja to Kano",
+      "count": 95
+    }
+  ]
+}

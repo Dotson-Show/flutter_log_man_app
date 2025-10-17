@@ -1,0 +1,15 @@
+{
+  "statusCode": 201,
+  "status": "success",
+  "message": "Role created successfully",
+  "role": {
+    "id": 4,
+    "name": "SUPPORT_AGENT",
+    "description": "Customer support agent with limited permissions",
+    "permissions": [
+      "VIEW_ANALYTICS"
+    ],
+    "created_at": "2023-12-01T00:00:00Z",
+    "updated_at": "2023-12-01T00:00:00Z"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "statusCode": 200,
+  "items": [
+    {
+      "id": 1,
+      "username": "admin_user",
+      "email": "admin@example.com",
+      "full_name": "John Admin",
+      "phone_number": "1234567890",
+      "roles": ["admin", "moderator"],
+      "is_active": true,
+      "created_at": "2023-01-01T00:00:00Z",
+      "updated_at": "2023-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "username": "super_admin",
+      "email": "super@example.com",
+      "full_name": "Jane Super Admin",
+      "phone_number": "0987654321",
+      "roles": ["super_admin"],
+      "is_active": true,
+      "created_at": "2023-01-02T00:00:00Z",
+      "updated_at": "2023-01-02T00:00:00Z"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "per_page": 20,
+    "total": 2,
+    "pages": 1
+  }
+}

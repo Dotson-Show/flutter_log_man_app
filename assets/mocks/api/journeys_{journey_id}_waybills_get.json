@@ -1,0 +1,13 @@
+{
+  "statusCode": 200,
+  "waybills": [
+    {
+      "id": 1,
+      "journey_id": 1,
+      "file_name": "waybill_001.pdf",
+      "file_url": "https://example.com/waybills/waybill_001.pdf",
+      "uploaded_at": "2023-12-01T10:00:00Z",
+      "created_at": "2023-12-01T10:00:00Z"
+    }
+  ]
+}

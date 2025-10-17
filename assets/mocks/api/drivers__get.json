@@ -1,0 +1,59 @@
+{
+  "statusCode": 200,
+  "drivers": [
+    {
+      "id": 101,
+      "username": "jane_driver",
+      "email": "jane.driver@example.com",
+      "full_name": "Jane Driver",
+      "phone_number": "+1234567891",
+      "user_type": "DRIVER",
+      "is_active": true,
+      "is_available": true,
+      "profile": {
+        "license_number": "DL123456789",
+        "license_expiry": "2026-08-30",
+        "vehicle_make": "Honda",
+        "vehicle_model": "Civic",
+        "vehicle_year": 2022,
+        "vehicle_color": "Silver",
+        "vehicle_plate": "ABC1234",
+        "vehicle_type": "CAR"
+      },
+      "rating": 4.7,
+      "total_journeys": 150,
+      "created_at": "2023-01-02T00:00:00Z",
+      "updated_at": "2023-01-02T00:00:00Z"
+    },
+    {
+      "id": 102,
+      "username": "bob_driver",
+      "email": "bob.driver@example.com",
+      "full_name": "Bob Driver",
+      "phone_number": "+1234567892",
+      "user_type": "DRIVER",
+      "is_active": true,
+      "is_available": false,
+      "profile": {
+        "license_number": "DL987654321",
+        "license_expiry": "2025-12-15",
+        "vehicle_make": "Toyota",
+        "vehicle_model": "Camry",
+        "vehicle_year": 2020,
+        "vehicle_color": "Blue",
+        "vehicle_plate": "XYZ789",
+        "vehicle_type": "CAR"
+      },
+      "rating": 4.3,
+      "total_journeys": 89,
+      "created_at": "2023-01-03T00:00:00Z",
+      "updated_at": "2023-01-03T00:00:00Z"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "per_page": 20,
+    "total": 2,
+    "pages": 1
+  }
+}

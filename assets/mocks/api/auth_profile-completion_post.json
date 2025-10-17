@@ -1,0 +1,9 @@
+{
+  "statusCode": 200,
+  "status": "success",
+  "message": "Profile completed successfully",
+  "details": {
+    "profile_type": "CLIENT",
+    "completion_date": "2023-12-01T00:00:00Z"
+  }
+}

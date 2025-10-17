@@ -1,0 +1,16 @@
+{
+  "statusCode": 200,
+  "status": "success",
+  "message": "Role updated successfully",
+  "role": {
+    "id": 4,
+    "name": "SUPPORT_AGENT",
+    "description": "Customer support agent with limited permissions",
+    "permissions": [
+      "VIEW_ANALYTICS",
+      "MANAGE_USERS"
+    ],
+    "created_at": "2023-12-01T00:00:00Z",
+    "updated_at": "2023-12-01T00:00:00Z"
+  }
+}

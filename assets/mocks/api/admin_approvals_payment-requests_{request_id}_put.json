@@ -1,0 +1,16 @@
+{
+  "statusCode": 200,
+  "status": "success",
+  "message": "Payment request updated successfully",
+  "payment_request": {
+    "id": 1,
+    "driver_id": 101,
+    "amount": 500.00,
+    "request_type": "WITHDRAWAL",
+    "status": "APPROVED",
+    "description": "Driver withdrawal request",
+    "submitted_at": "2023-12-01T10:00:00Z",
+    "approved_at": "2023-12-01T12:00:00Z",
+    "created_at": "2023-12-01T10:00:00Z"
+  }
+}

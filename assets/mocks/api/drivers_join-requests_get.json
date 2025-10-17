@@ -1,0 +1,51 @@
+{
+  "statusCode": 200,
+  "join_requests": [
+    {
+      "id": 1,
+      "driver_id": 101,
+      "vendor_id": 201,
+      "status": "PENDING",
+      "message": "I would like to join your delivery fleet",
+      "created_at": "2023-12-01T10:00:00Z",
+      "updated_at": "2023-12-01T10:00:00Z",
+      "driver": {
+        "id": 101,
+        "full_name": "Jane Driver",
+        "email": "jane.driver@example.com",
+        "phone_number": "+1234567891"
+      },
+      "vendor": {
+        "id": 201,
+        "business_name": "Tony's Italian Kitchen",
+        "business_email": "contact@tonysitaliankitchen.com"
+      }
+    },
+    {
+      "id": 2,
+      "driver_id": 102,
+      "vendor_id": 202,
+      "status": "APPROVED",
+      "message": "Experienced driver looking for opportunities",
+      "created_at": "2023-11-28T14:30:00Z",
+      "updated_at": "2023-11-30T09:15:00Z",
+      "driver": {
+        "id": 102,
+        "full_name": "Bob Driver",
+        "email": "bob.driver@example.com",
+        "phone_number": "+1234567892"
+      },
+      "vendor": {
+        "id": 202,
+        "business_name": "Sushi Express",
+        "business_email": "info@sushiexpress.com"
+      }
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "per_page": 20,
+    "total": 2,
+    "pages": 1
+  }
+}

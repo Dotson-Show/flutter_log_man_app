@@ -1,0 +1,47 @@
+{
+  "statusCode": 200,
+  "permissions": [
+    {
+      "id": 1,
+      "name": "MANAGE_USERS",
+      "description": "Ability to manage user accounts",
+      "resource": "users",
+      "created_at": "2023-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "MANAGE_DRIVERS",
+      "description": "Ability to manage driver accounts",
+      "resource": "drivers",
+      "created_at": "2023-01-01T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "name": "MANAGE_VENDORS",
+      "description": "Ability to manage vendor accounts",
+      "resource": "vendors",
+      "created_at": "2023-01-01T00:00:00Z"
+    },
+    {
+      "id": 4,
+      "name": "MANAGE_JOURNEYS",
+      "description": "Ability to manage journeys",
+      "resource": "journeys",
+      "created_at": "2023-01-01T00:00:00Z"
+    },
+    {
+      "id": 5,
+      "name": "VIEW_ANALYTICS",
+      "description": "Ability to view analytics and reports",
+      "resource": "analytics",
+      "created_at": "2023-01-01T00:00:00Z"
+    },
+    {
+      "id": 6,
+      "name": "MANAGE_PAYMENTS",
+      "description": "Ability to manage payments and financial transactions",
+      "resource": "payments",
+      "created_at": "2023-01-01T00:00:00Z"
+    }
+  ]
+}

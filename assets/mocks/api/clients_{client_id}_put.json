@@ -1,0 +1,21 @@
+{
+  "statusCode": 200,
+  "status": "success",
+  "message": "Client updated successfully",
+  "client": {
+    "id": 42,
+    "username": "john_client",
+    "email": "john.client@example.com",
+    "full_name": "John Client",
+    "phone_number": "+1234567890",
+    "user_type": "CLIENT",
+    "is_active": true,
+    "profile": {
+      "address": "123 New Street, City, State 12345",
+      "date_of_birth": "1990-05-15",
+      "preferred_payment_method": "CREDIT_CARD"
+    },
+    "created_at": "2023-01-01T00:00:00Z",
+    "updated_at": "2023-12-01T00:00:00Z"
+  }
+}

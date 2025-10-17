@@ -1,0 +1,12 @@
+{
+  "statusCode": 200,
+  "id": 42,
+  "username": "updated_admin",
+  "email": "updated@example.com",
+  "full_name": "Updated Admin",
+  "phone_number": "1234567890",
+  "roles": ["admin", "moderator", "user_manager"],
+  "is_active": true,
+  "created_at": "2023-01-01T00:00:00Z",
+  "updated_at": "2023-12-01T00:00:00Z"
+}

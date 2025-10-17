@@ -1,0 +1,38 @@
+{
+  "statusCode": 200,
+  "payments": [
+    {
+      "id": 1,
+      "driver_id": 101,
+      "journey_id": 1,
+      "amount": 20.40,
+      "status": "COMPLETED",
+      "payment_method": "BANK_TRANSFER",
+      "transaction_id": "TXN123456789",
+      "paid_at": "2023-12-01T12:30:00Z",
+      "created_at": "2023-12-01T12:00:00Z"
+    },
+    {
+      "id": 2,
+      "driver_id": 101,
+      "journey_id": 2,
+      "amount": 15.00,
+      "status": "PENDING",
+      "payment_method": "BANK_TRANSFER",
+      "transaction_id": null,
+      "paid_at": null,
+      "created_at": "2023-12-01T14:00:00Z"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "per_page": 20,
+    "total": 2,
+    "pages": 1
+  },
+  "summary": {
+    "total_earnings": 35.40,
+    "completed_payments": 20.40,
+    "pending_payments": 15.00
+  }
+}

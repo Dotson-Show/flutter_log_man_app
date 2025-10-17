@@ -1,0 +1,6 @@
+{
+  "statusCode": 201,
+  "status": "success",
+  "message": "User registered successfully. Please verify your phone number.",
+  "user_id": 123
+}

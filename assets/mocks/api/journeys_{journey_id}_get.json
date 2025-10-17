@@ -1,0 +1,37 @@
+{
+  "statusCode": 200,
+  "journey": {
+    "id": 1,
+    "client_id": 42,
+    "driver_id": 101,
+    "vendor_id": 201,
+    "status": "COMPLETED",
+    "pickup_address": "123 Main Street, City, State",
+    "delivery_address": "456 Oak Avenue, City, State",
+    "pickup_time": "2023-12-01T10:00:00Z",
+    "delivery_time": "2023-12-01T12:00:00Z",
+    "distance": 15.5,
+    "fare": 25.50,
+    "created_at": "2023-12-01T09:00:00Z",
+    "updated_at": "2023-12-01T12:00:00Z",
+    "client": {
+      "id": 42,
+      "full_name": "John Client",
+      "phone_number": "+1234567890",
+      "email": "john.client@example.com"
+    },
+    "driver": {
+      "id": 101,
+      "full_name": "Jane Driver",
+      "phone_number": "+1234567891",
+      "email": "jane.driver@example.com",
+      "vehicle_plate": "ABC1234"
+    },
+    "vendor": {
+      "id": 201,
+      "business_name": "Tony's Italian Kitchen",
+      "business_phone": "+14155551234",
+      "business_address": "456 Market Street, Suite 101, San Francisco, CA 94102"
+    }
+  }
+}

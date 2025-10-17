@@ -1,0 +1,13 @@
+{
+  "statusCode": 201,
+  "status": "success",
+  "message": "Waybill uploaded successfully",
+  "waybill": {
+    "id": 2,
+    "journey_id": 1,
+    "file_name": "waybill_002.pdf",
+    "file_url": "https://example.com/waybills/waybill_002.pdf",
+    "uploaded_at": "2023-12-01T12:00:00Z",
+    "created_at": "2023-12-01T12:00:00Z"
+  }
+}

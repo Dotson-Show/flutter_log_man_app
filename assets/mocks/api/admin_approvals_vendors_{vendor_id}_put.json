@@ -1,0 +1,17 @@
+{
+  "statusCode": 200,
+  "status": "success",
+  "message": "Vendor approval updated successfully",
+  "vendor": {
+    "id": 201,
+    "business_name": "Tony's Italian Kitchen",
+    "business_email": "contact@tonysitaliankitchen.com",
+    "business_phone": "+14155551234",
+    "business_address": "456 Market Street, Suite 101, San Francisco, CA 94102",
+    "business_description": "Authentic Italian restaurant specializing in homemade pasta",
+    "status": "APPROVED",
+    "submitted_at": "2023-12-01T10:00:00Z",
+    "approved_at": "2023-12-01T12:00:00Z",
+    "created_at": "2023-12-01T10:00:00Z"
+  }
+}

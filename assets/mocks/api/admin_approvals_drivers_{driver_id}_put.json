@@ -1,0 +1,19 @@
+{
+  "statusCode": 200,
+  "status": "success",
+  "message": "Driver approval updated successfully",
+  "driver": {
+    "id": 42,
+    "name": "John Driver",
+    "email": "john.driver@example.com",
+    "phone": "1234567890",
+    "status": "APPROVED",
+    "approved_at": "2023-12-01T12:00:00Z",
+    "vehicle_info": {
+      "make": "Toyota",
+      "model": "Camry",
+      "year": 2020,
+      "license_plate": "ABC123"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "statusCode": 200,
+  "status": "success",
+  "message": "Driver availability updated successfully",
+  "driver": {
+    "id": 101,
+    "is_available": true,
+    "updated_at": "2023-12-01T00:00:00Z"
+  }
+}

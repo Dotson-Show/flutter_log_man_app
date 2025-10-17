@@ -1,0 +1,36 @@
+{
+  "statusCode": 200,
+  "status": "success",
+  "permissions": [
+    {
+      "id": 1,
+      "name": "MANAGE_USERS",
+      "description": "Ability to manage user accounts",
+      "resource": "users"
+    },
+    {
+      "id": 2,
+      "name": "MANAGE_DRIVERS",
+      "description": "Ability to manage driver accounts",
+      "resource": "drivers"
+    },
+    {
+      "id": 3,
+      "name": "MANAGE_VENDORS",
+      "description": "Ability to manage vendor accounts",
+      "resource": "vendors"
+    },
+    {
+      "id": 4,
+      "name": "MANAGE_JOURNEYS",
+      "description": "Ability to manage journeys",
+      "resource": "journeys"
+    },
+    {
+      "id": 5,
+      "name": "VIEW_ANALYTICS",
+      "description": "Ability to view analytics and reports",
+      "resource": "analytics"
+    }
+  ]
+}

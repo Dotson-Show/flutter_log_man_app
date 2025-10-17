@@ -1,0 +1,32 @@
+{
+  "statusCode": 200,
+  "resource_requests": [
+    {
+      "id": 1,
+      "driver_id": 101,
+      "request_type": "FUEL_SUBSIDY",
+      "amount": 50.00,
+      "status": "PENDING",
+      "description": "Request for fuel subsidy",
+      "submitted_at": "2023-12-01T10:00:00Z",
+      "created_at": "2023-12-01T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "driver_id": 101,
+      "request_type": "VEHICLE_MAINTENANCE",
+      "amount": 200.00,
+      "status": "APPROVED",
+      "description": "Vehicle maintenance request",
+      "submitted_at": "2023-11-28T14:30:00Z",
+      "approved_at": "2023-11-30T09:15:00Z",
+      "created_at": "2023-11-28T14:30:00Z"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "per_page": 20,
+    "total": 2,
+    "pages": 1
+  }
+}

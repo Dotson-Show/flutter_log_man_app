@@ -1,0 +1,21 @@
+{
+  "statusCode": 200,
+  "status": "success",
+  "message": "Journey status updated successfully",
+  "journey": {
+    "id": 1,
+    "client_id": 42,
+    "driver_id": 101,
+    "vendor_id": 201,
+    "status": "IN_PROGRESS",
+    "pickup_address": "123 Main Street, City, State",
+    "delivery_address": "456 Oak Avenue, City, State",
+    "pickup_time": "2023-12-01T10:00:00Z",
+    "delivery_time": null,
+    "distance": 15.5,
+    "fare": 25.50,
+    "status_notes": "Driver is on the way to pickup location",
+    "created_at": "2023-12-01T09:00:00Z",
+    "updated_at": "2023-12-01T10:30:00Z"
+  }
+}

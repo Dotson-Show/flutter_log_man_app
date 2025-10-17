@@ -1,0 +1,30 @@
+{
+  "statusCode": 200,
+  "driver": {
+    "id": 101,
+    "username": "jane_driver",
+    "email": "jane.driver@example.com",
+    "full_name": "Jane Driver",
+    "phone_number": "+1234567891",
+    "user_type": "DRIVER",
+    "is_active": true,
+    "is_available": true,
+    "profile": {
+      "license_number": "DL123456789",
+      "license_expiry": "2026-08-30",
+      "vehicle_make": "Honda",
+      "vehicle_model": "Civic",
+      "vehicle_year": 2022,
+      "vehicle_color": "Silver",
+      "vehicle_plate": "ABC1234",
+      "vehicle_type": "CAR"
+    },
+    "rating": 4.7,
+    "total_journeys": 150,
+    "completed_journeys": 145,
+    "cancelled_journeys": 5,
+    "total_earnings": 3750.50,
+    "created_at": "2023-01-02T00:00:00Z",
+    "updated_at": "2023-01-02T00:00:00Z"
+  }
+}
