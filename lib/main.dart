@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:app_links/app_links.dart';
 import 'dart:async';
+import 'src/core/app_theme.dart';
 
 // Auth
 import 'src/features/auth/controllers/auth_controller.dart';

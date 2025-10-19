@@ -3,6 +3,7 @@
 // widgets/modern_loading_button.dart
 // ========================================
 import 'package:flutter/material.dart';
+import '../core/app_theme.dart';
 
 class ModernLoadingButton extends StatelessWidget {
   const ModernLoadingButton({
@@ -26,6 +27,7 @@ class ModernLoadingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final defaultStyle = type == ButtonType.filled
         ? FilledButton.styleFrom(
+      backgroundColor: const Color(0xFF1F1F1F),
       padding: const EdgeInsets.symmetric(vertical: 16),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
