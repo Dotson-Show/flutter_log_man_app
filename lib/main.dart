@@ -9,6 +9,7 @@ import 'src/core/app_theme.dart';
 import 'src/features/auth/controllers/auth_controller.dart';
 
 // Features
+import 'src/features/customer/screens/find_vehicles_screen.dart';
 import 'src/features/splash/screens/splash_screen.dart';
 import 'src/features/public/screens/landing_screen.dart';
 import 'src/features/auth/screens/login_screen.dart';
@@ -62,18 +63,19 @@ class RevoltransApp extends ConsumerStatefulWidget {
 class _RevoltransAppState extends ConsumerState<RevoltransApp> {
   final AppLinks _appLinks = AppLinks();
   StreamSubscription<Uri>? _linkSubscription;
-  late final GoRouter _router;
+  GoRouter? _router;
 
   @override
   void initState() {
     super.initState();
-    _setupRouter();
     _initDeepLinks();
   }
 
-  void _setupRouter() {
-    _router = GoRouter(
+  GoRouter _createRouter() {
+    return GoRouter(
       initialLocation: '/',
+      // Make router listen to auth state changes
+      refreshListenable: _AuthChangeNotifier(ref),
       routes: [
         // Splash
         GoRoute(
@@ -87,7 +89,7 @@ class _RevoltransAppState extends ConsumerState<RevoltransApp> {
           builder: (_, __) => const LandingScreen(),
         ),
 
-        // Auth routes 
+        // Auth routes
         GoRoute(
           path: '/login',
           builder: (_, __) => const LoginScreen(),
@@ -100,6 +102,7 @@ class _RevoltransAppState extends ConsumerState<RevoltransApp> {
           path: '/verify',
           builder: (_, __) => const VerifyScreen(),
         ),
+
         // Dashboard router - automatically routes to correct dashboard
         GoRoute(
           path: '/dashboard',
@@ -128,6 +131,10 @@ class _RevoltransAppState extends ConsumerState<RevoltransApp> {
               journeyId: int.parse(id),
             );
           },
+        ),
+        GoRoute(
+          path: '/customer/find-vehicles',
+          builder: (_, __) => const FindVehiclesScreen(),
         ),
 
         // Vendor routes
@@ -233,11 +240,11 @@ class _RevoltransAppState extends ConsumerState<RevoltransApp> {
         ),
         GoRoute(
           path: '/admin/user-detail/:id',
-          builder: (context, state) => const Placeholder(), // TODO: Implement user detail screen
+          builder: (context, state) => const Placeholder(),
         ),
         GoRoute(
           path: '/admin/manage-roles/:id',
-          builder: (context, state) => const Placeholder(), // TODO: Implement role management screen
+          builder: (context, state) => const Placeholder(),
         ),
 
         // Generic journey route (for deep links)
@@ -262,17 +269,22 @@ class _RevoltransAppState extends ConsumerState<RevoltransApp> {
           final isPublicRoute = _isPublicRoute(currentPath);
           final isAuthRoute = _isAuthRoute(currentPath);
 
+          debugPrint('🔒 Auth Guard - Path: $currentPath, IsAuth: $isAuth');
+
           // Not authenticated and trying to access protected route
           if (!isAuth && !isPublicRoute) {
+            debugPrint('🚫 Not authenticated, redirecting to /login');
             return '/login';
           }
 
           // Authenticated and trying to access auth pages
           if (isAuth && isAuthRoute) {
+            debugPrint('✅ Already authenticated, redirecting to /dashboard');
             return '/dashboard';
           }
         } catch (e) {
-          debugPrint('Auth guard error: $e');
+          debugPrint('❌ Auth guard error: $e');
+          return '/login';
         }
 
         return null; // Allow navigation
@@ -291,7 +303,6 @@ class _RevoltransAppState extends ConsumerState<RevoltransApp> {
   }
 
   void _initDeepLinks() async {
-    // Handle incoming links when app is already running
     _linkSubscription = _appLinks.uriLinkStream.listen(
           (Uri uri) {
         _handleDeepLink(uri);
@@ -301,7 +312,6 @@ class _RevoltransAppState extends ConsumerState<RevoltransApp> {
       },
     );
 
-    // Handle link when app is launched from terminated state
     try {
       final Uri? initialLink = await _appLinks.getInitialLink();
       if (initialLink != null) {
@@ -314,36 +324,27 @@ class _RevoltransAppState extends ConsumerState<RevoltransApp> {
 
   void _handleDeepLink(Uri uri) {
     debugPrint('Received deep link: $uri');
-
-    // Extract the path from the URI
     String path = uri.path;
-
-    // Handle query parameters if needed
     Map<String, String> queryParams = uri.queryParameters;
 
     try {
-      // Use GoRouter to navigate to the deep link path
       if (_isValidRoute(path)) {
-        // Add any query parameters as extra data if needed
         if (queryParams.isNotEmpty) {
-          _router.go(path, extra: queryParams);
+          _router?.go(path, extra: queryParams);
         } else {
-          _router.go(path);
+          _router?.go(path);
         }
       } else {
-        // If route doesn't exist, redirect to landing or dashboard
         debugPrint('Invalid route: $path, redirecting to landing');
-        _router.go('/landing');
+        _router?.go('/landing');
       }
     } catch (e) {
       debugPrint('Navigation error: $e');
-      // Fallback to landing page
-      _router.go('/landing');
+      _router?.go('/landing');
     }
   }
 
   bool _isValidRoute(String path) {
-    // List of valid routes in your app
     const validRoutes = [
       '/',
       '/landing',
@@ -372,10 +373,8 @@ class _RevoltransAppState extends ConsumerState<RevoltransApp> {
       '/admin/analytics',
     ];
 
-    // Check exact matches
     if (validRoutes.contains(path)) return true;
 
-    // Check pattern matches
     if (RegExp(r'^/journey/\d+$').hasMatch(path)) return true;
     if (RegExp(r'^/customer/journey/\d+$').hasMatch(path)) return true;
     if (RegExp(r'^/vendor/journey/\d+$').hasMatch(path)) return true;
@@ -394,13 +393,30 @@ class _RevoltransAppState extends ConsumerState<RevoltransApp> {
 
   @override
   Widget build(BuildContext context) {
+    // Create router in build so it has access to ref
+    _router = _createRouter();
+
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'Revoltrans',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      routerConfig: _router,
+      routerConfig: _router!,
+    );
+  }
+}
+
+// Helper class to make GoRouter reactive to auth state changes
+class _AuthChangeNotifier extends ChangeNotifier {
+  _AuthChangeNotifier(WidgetRef ref) {
+    ref.listen<AsyncValue<bool>>(
+      isAuthenticatedProvider,
+          (_, __) {
+        debugPrint('🔄 Auth state changed, notifying router');
+        notifyListeners();
+      },
     );
   }
 }

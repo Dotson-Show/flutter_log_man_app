@@ -52,7 +52,7 @@ final class SessionServiceProvider
   }
 }
 
-String _$sessionServiceHash() => r'5bfb9893c3ea1f4115c727ff760efc8ca842352a';
+String _$sessionServiceHash() => r'5311e7b62e11f36c66fe22b68834b36b114f3bf3';
 
 /// Auth Service Provider
 
@@ -141,7 +141,7 @@ final class CurrentUserProvider
   }
 }
 
-String _$currentUserHash() => r'55824313d85c66373361fc0386734184bf211167';
+String _$currentUserHash() => r'1ef1d6a364773bdc9817a9219a5931d2a91bf8b9';
 
 /// Authentication Status Provider
 
@@ -179,7 +179,7 @@ final class IsAuthenticatedProvider
   }
 }
 
-String _$isAuthenticatedHash() => r'127a7f619dab1c11782c31bc0acc2110daff3763';
+String _$isAuthenticatedHash() => r'3eb18f5dfc240899ad8a218e0c0c43323eb2e790';
 
 @ProviderFor(LoginController)
 const loginControllerProvider = LoginControllerProvider._();
@@ -341,7 +341,7 @@ final class LogoutControllerProvider
   LogoutController create() => LogoutController();
 }
 
-String _$logoutControllerHash() => r'b71614de25b7a67a9f1392e1fd94f372b679a3a5';
+String _$logoutControllerHash() => r'fb1257099f94f20261ff57f6264271a9b4a132db';
 
 abstract class _$LogoutController extends $AsyncNotifier<void> {
   FutureOr<void> build();

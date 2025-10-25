@@ -18,7 +18,7 @@ class LogoutButton extends ConsumerWidget {
     );
   }
 
-  Future<void> _showLogoutDialog(BuildContext context, WidgetRef ref) async {
+  Future<void>  _showLogoutDialog(BuildContext context, WidgetRef ref) async {
     final shouldLogout = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -270,5 +270,103 @@ class LogoutFAB extends ConsumerWidget {
       backgroundColor: Theme.of(context).colorScheme.error,
       child: const Icon(Icons.logout),
     );
+  }
+}
+
+/// Logout button styled as a filled button for settings/profile pages
+class LogoutFilledButton extends ConsumerWidget {
+  const LogoutFilledButton({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return FilledButton.tonalIcon(
+      onPressed: () => _showLogoutDialog(context, ref),
+      icon: const Icon(Icons.logout),
+      label: const Text('Logout'),
+      style: FilledButton.styleFrom(
+        backgroundColor: Theme.of(context).colorScheme.errorContainer,
+        foregroundColor: Theme.of(context).colorScheme.error,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _showLogoutDialog(BuildContext context, WidgetRef ref) async {
+    // Copy the same logout logic from LogoutButton
+    final shouldLogout = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Logout'),
+        content: const Text('Are you sure you want to logout?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.error,
+            ),
+            child: const Text('Logout'),
+          ),
+        ],
+      ),
+    );
+
+    if (shouldLogout == true && context.mounted) {
+      await _performLogout(context, ref);
+    }
+  }
+
+  Future<void> _performLogout(BuildContext context, WidgetRef ref) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => WillPopScope(
+        onWillPop: () async => false,
+        child: const Center(
+          child: Card(
+            child: Padding(
+              padding: EdgeInsets.all(24.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 16),
+                  Text('Logging out...'),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+
+    try {
+      await ref.read(logoutControllerProvider.notifier).logout();
+    } catch (e) {
+      print('⚠️ Logout error: $e');
+    }
+
+    // Invalidate auth providers
+    ref.invalidate(currentUserProvider);
+    ref.invalidate(isAuthenticatedProvider);
+
+    // Use post-frame callback to safely dismiss dialog after router redirects
+    if (context.mounted) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (context.mounted) {
+          try {
+            Navigator.of(context, rootNavigator: true).pop();
+          } catch (e) {
+            print('⚠️ Dialog already dismissed: $e');
+          }
+        }
+      });
+    }
   }
 }

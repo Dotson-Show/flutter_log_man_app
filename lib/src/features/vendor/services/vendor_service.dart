@@ -37,7 +37,7 @@ class VendorService {
 
   Future<List<Journey>> fetchVendorRequests() async {
     try {
-      final res = await apiClient.dio.get('/api/v1/journeys', queryParameters: {'role': 'vendor'});
+      final res = await apiClient.dio.get('/journeys', queryParameters: {'role': 'vendor'});
       final items = res.data['items'] as List;
       return items.map((e) => Journey.fromJson(e)).toList();
     } on DioException catch (e) {
@@ -47,7 +47,7 @@ class VendorService {
 
   Future<void> updateRequestStatus({required int journeyId, required String status}) async {
     try {
-      await apiClient.dio.put('/api/v1/journeys/$journeyId/update-status', data: {'status': status});
+      await apiClient.dio.put('/journeys/$journeyId/update-status', data: {'status': status});
     } on DioException catch (e) {
       throw Exception(ErrorParser.parseFromDioException(e));
     }
@@ -55,7 +55,7 @@ class VendorService {
 
   Future<void> assignDriver({required int journeyId, required int driverId}) async {
     try {
-      await apiClient.dio.put('/api/v1/journeys/$journeyId/assign-driver', data: {'driver_id': driverId});
+      await apiClient.dio.put('/journeys/$journeyId/assign-driver', data: {'driver_id': driverId});
     } on DioException catch (e) {
       throw Exception(ErrorParser.parseFromDioException(e));
     }
@@ -63,7 +63,7 @@ class VendorService {
 
   Future<List<User>> fetchDrivers() async {
     try {
-      final res = await apiClient.dio.get('/api/v1/vendor/drivers');
+      final res = await apiClient.dio.get('/vendor/drivers');
       final items = res.data['items'] as List;
       return items.map((e) => User.fromJson(e)).toList();
     } on DioException catch (e) {
@@ -76,17 +76,17 @@ class VendorService {
       'journey_id': journeyId,
       'document': await MultipartFile.fromFile(filePath),
     });
-    await apiClient.dio.post('/api/v1/waybills/upload', data: formData);
+    await apiClient.dio.post('/waybills/upload', data: formData);
   }
 
   Future<List<Waybill>> fetchWaybills() async {
-    final res = await apiClient.dio.get('/api/v1/waybills', queryParameters: {'role': 'vendor'});
+    final res = await apiClient.dio.get('/waybills', queryParameters: {'role': 'vendor'});
     final items = res.data['items'] as List;
     return items.map((e) => Waybill.fromJson(e)).toList();
   }
 
   Future<Map<String, dynamic>> fetchAnalytics() async {
-    final res = await apiClient.dio.get('/api/v1/vendor/analytics');
+    final res = await apiClient.dio.get('/vendors/analytics');
     return res.data;
   }
 }

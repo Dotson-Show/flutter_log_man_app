@@ -104,16 +104,44 @@ class AuthService {
     }
   }
 
-  /// Logout user
+  /// Logout user - ALWAYS succeeds
   Future<void> logout() async {
+    print('🚪 AuthService.logout() called');
+
+    // Step 1: Try server logout (optional, non-blocking)
     try {
-      // Optional: Call logout endpoint if your API has one
-      await apiClient.dio.post('/auth/logout');
+      print('📡 Attempting server logout...');
+      await apiClient.dio.post(
+        '/auth/logout',
+        options: Options(
+          sendTimeout: const Duration(seconds: 5),
+          receiveTimeout: const Duration(seconds: 5),
+        ),
+      ).timeout(const Duration(seconds: 5));
+      print('✅ Server logout successful');
     } catch (e) {
-      // Continue with local logout even if API call fails
-    } finally {
-      await sessionService.clearSession();
+      print('⚠️ Server logout failed (continuing): $e');
     }
+
+    // Step 2: ALWAYS clear local session (critical)
+    try {
+      print('🗑️ Clearing local session...');
+      await sessionService.clearSession();
+      print('✅ Local session cleared');
+    } catch (e) {
+      print('❌ Session clear failed: $e');
+      // Try one more time
+      try {
+        print('🔄 Retrying session clear...');
+        await sessionService.clearSession();
+        print('✅ Session cleared on retry');
+      } catch (e2) {
+        print('❌ Session clear retry failed: $e2');
+        // Don't throw - we've done our best
+      }
+    }
+
+    print('✅ AuthService.logout() completed');
   }
 
   /// Reset password

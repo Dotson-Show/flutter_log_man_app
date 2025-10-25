@@ -14,7 +14,11 @@ part 'auth_controller.g.dart';
 /// Session Service Provider
 @riverpod
 SessionService sessionService(Ref ref) {
-  final storage = const FlutterSecureStorage();
+  const storage = FlutterSecureStorage(
+    aOptions: AndroidOptions(
+      encryptedSharedPreferences: true,
+    ),
+  );
   return SessionService(storage);
 }
 
@@ -30,15 +34,29 @@ AuthService authService(Ref ref) {
 /// Current User Provider - watches the current authenticated user
 @riverpod
 Future<UserData?> currentUser(Ref ref) async {
-  final sessionService = ref.watch(sessionServiceProvider);
-  return await sessionService.getUserData();
+  try {
+    final sessionService = ref.watch(sessionServiceProvider);
+    final user = await sessionService.getUserData();
+    print('👤 currentUser: ${user?.username ?? "null"}');
+    return user;
+  } catch (e) {
+    print('❌ currentUser error: $e');
+    return null; // Return null on error
+  }
 }
 
 /// Authentication Status Provider
 @riverpod
 Future<bool> isAuthenticated(Ref ref) async {
-  final sessionService = ref.watch(sessionServiceProvider);
-  return await sessionService.isAuthenticated();
+  try {
+    final sessionService = ref.watch(sessionServiceProvider);
+    final isAuth = await sessionService.isAuthenticated();
+    print('🔐 isAuthenticated check: $isAuth');
+    return isAuth;
+  } catch (e) {
+    print('❌ isAuthenticated error: $e - defaulting to false');
+    return false; // Always return false on error to prevent access
+  }
 }
 
 // ============================================================================
@@ -145,17 +163,34 @@ class LogoutController extends _$LogoutController {
   FutureOr<void> build() {}
 
   Future<void> logout() async {
+    print('🎮 LogoutController.logout() called');
     state = const AsyncLoading();
+
     try {
+      // Call auth service logout
       await ref.read(authServiceProvider).logout();
 
-      // Invalidate all user-related providers
-      ref.invalidate(currentUserProvider);
-      ref.invalidate(isAuthenticatedProvider);
+      // Only invalidate if ref is still mounted
+      if (ref.mounted) {
+        print('🔄 Invalidating providers from controller...');
+        ref.invalidate(currentUserProvider);
+        ref.invalidate(isAuthenticatedProvider);
+      }
 
       state = const AsyncData(null);
+      print('✅ LogoutController completed successfully');
+
     } catch (e, st) {
-      state = AsyncError(e, st);
+      print('❌ LogoutController error: $e');
+
+      // Force invalidate even on error (if still mounted)
+      if (ref.mounted) {
+        ref.invalidate(currentUserProvider);
+        ref.invalidate(isAuthenticatedProvider);
+      }
+
+      // Set success state anyway (local logout succeeded)
+      state = const AsyncData(null);
     }
   }
 }
