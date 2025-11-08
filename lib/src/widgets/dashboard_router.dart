@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../features/auth/controllers/auth_controller.dart';
 import '../features/customer/screens/customer_dashboard_screen.dart';
 import '../features/admin/screens/admin_dashboard_screen.dart';
+import '../features/merchant/screens/merchant_dashboard_screen.dart';
 import '../features/vendor/screens/vendor_dashboard_screen.dart';
 import '../features/driver/screens/driver_dashboard_screen.dart';
 
@@ -46,6 +47,9 @@ class DashboardRouter extends ConsumerWidget {
 
       case 'VENDOR':
         return const VendorDashboardScreen();
+
+      case 'MERCHANT':
+        return const MerchantDashboardScreen();
 
       case 'DRIVER':
         return const DriverDashboardScreen();

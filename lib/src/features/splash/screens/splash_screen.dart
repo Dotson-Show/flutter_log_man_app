@@ -10,7 +10,7 @@ class SplashScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     useEffect(() {
-      Future.delayed(const Duration(seconds: 5), () async {
+      Future.delayed(const Duration(seconds: 2), () async {
         if (context.mounted) {
           try {
             final isAuthenticated = await ref.read(isAuthenticatedProvider.future);

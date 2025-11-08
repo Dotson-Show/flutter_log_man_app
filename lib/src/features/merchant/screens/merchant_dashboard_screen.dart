@@ -1,19 +1,19 @@
-// FILE: lib/features/driver/screens/driver_dashboard_screen.dart
+// FILE: lib/features/merchant/screens/merchant_dashboard_screen.dart
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import '../widgets/driver_home_tab.dart';
-import '../widgets/driver_journeys_tab.dart';
-import '../widgets/driver_analytics_tab.dart';
-import '../widgets/driver_profile_tab.dart';
+import '../widgets/merchant_home_tab.dart';
+import '../widgets/merchant_journeys_tab.dart';
+import '../widgets/merchant_analytics_tab.dart';
+import '../widgets/merchant_profile_tab.dart';
 
-class DriverDashboardScreen extends ConsumerStatefulWidget {
-  const DriverDashboardScreen({super.key});
+class MerchantDashboardScreen extends ConsumerStatefulWidget {
+  const MerchantDashboardScreen({super.key});
 
   @override
-  ConsumerState<DriverDashboardScreen> createState() => _DriverDashboardScreenState();
+  ConsumerState<MerchantDashboardScreen> createState() => _MerchantDashboardScreenState();
 }
 
-class _DriverDashboardScreenState extends ConsumerState<DriverDashboardScreen> {
+class _MerchantDashboardScreenState extends ConsumerState<MerchantDashboardScreen> {
   int _selectedIndex = 0;
 
   late final List<Widget> _pages;
@@ -22,10 +22,10 @@ class _DriverDashboardScreenState extends ConsumerState<DriverDashboardScreen> {
   void initState() {
     super.initState();
     _pages = [
-      DriverHomeTab(onSwitchTab: _switchTab),
-      const DriverJourneysTab(),
-      const DriverAnalyticsTab(),
-      const DriverProfileTab(),
+      MerchantHomeTab(onSwitchTab: _switchTab),
+      const MerchantJourneysTab(),
+      const MerchantAnalyticsTab(),
+      const MerchantProfileTab(),
     ];
   }
 
@@ -65,8 +65,8 @@ class _DriverDashboardScreenState extends ConsumerState<DriverDashboardScreen> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.route_outlined),
-            activeIcon: Icon(Icons.route),
+            icon: Icon(Icons.local_shipping_outlined),
+            activeIcon: Icon(Icons.local_shipping),
             label: 'Journeys',
           ),
           BottomNavigationBarItem(

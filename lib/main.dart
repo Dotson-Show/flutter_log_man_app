@@ -10,6 +10,7 @@ import 'src/features/auth/controllers/auth_controller.dart';
 
 // Features
 import 'src/features/customer/screens/find_vehicles_screen.dart';
+import 'src/features/merchant/screens/merchant_dashboard_screen.dart';
 import 'src/features/splash/screens/splash_screen.dart';
 import 'src/features/public/screens/landing_screen.dart';
 import 'src/features/auth/screens/login_screen.dart';
@@ -173,6 +174,12 @@ class _RevoltransAppState extends ConsumerState<RevoltransApp> {
         GoRoute(
           path: '/vendor/analytics',
           builder: (_, __) => const VendorAnalyticsScreen(),
+        ),
+
+        // Merchant routes
+        GoRoute(
+          path: '/merchant/dashboard',
+          builder: (_, __) => const MerchantDashboardScreen(),
         ),
 
         // Driver routes

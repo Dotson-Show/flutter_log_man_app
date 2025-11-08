@@ -163,6 +163,7 @@ class RegisterScreen extends HookConsumerWidget {
                     DropdownItem(value: 'CLIENT', label: 'Client'),
                     DropdownItem(value: 'DRIVER', label: 'Driver'),
                     DropdownItem(value: 'VENDOR', label: 'Vendor'),
+                    DropdownItem(value: 'MERCHANT', label: 'Merchant'),
                   ],
                   onChanged: (value) => selectedUserType.value = value,
                   validator: (value) {
